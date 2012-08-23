@@ -17,9 +17,9 @@ Anyhow, for completeness, I will outline the steps I have taken to save my MBA f
 
 Steps I undertook right after the incident...
 
-## Some useful links
+## Further reading
 
-Hmm
+For interested, some links I found useful and informative after the incident:
 
 + [Electronics Water Damage](http://www.ifixit.com/Wiki/Electronics_Water_Damage) Techniques for generalized water damage troubleshooting and recovery.
 + [Water and Electronics?](http://electronics.stackexchange.com/questions/14196/water-and-electronics) Question posted on StackExchange devoted to electronics and electrical engineering.
