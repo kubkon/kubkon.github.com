@@ -40,7 +40,7 @@ def fibonacci():
 {% endhighlight %}
 This construct is called a generator function in Python's nomenclature, and allows for lazy evaluation of the function's definition.
 
-In order to print the first 10 Fibonacci numbers using our generator function, `fibonacci`, we first need to create an iterator (or technically, a generator) object by calling `fibonacci`. Then iterate over some control sequence of 10 elements (e.g., a `range` object of 10 numbers), and use `next` built-in function on the created iterator to return successive Fibonacci numbers:
+In order to print the first 10 Fibonacci numbers using our generator function, `fibonacci`, we first need to create an iterator (or technically, a generator) object by calling `fibonacci`. Then iterate over some control sequence of 10 elements (e.g., a `range` object of 10 numbers), and use `next` built-in function on the created iterator to return successive Fibonacci numbers&sup1;:
 {% highlight python %}
 
 fibb = fibonacci()
@@ -57,3 +57,5 @@ print(fibb_list)
 
 {% endhighlight %}
 Happy lazy evaluating!
+
+<p class="footnote">&sup1;Implementation of Fibonacci generator function based on <a href="http://getpython3.com/diveintopython3/generators.html">an example from Dive into Python 3 book by Mark Pilgrim</a>.</p>
