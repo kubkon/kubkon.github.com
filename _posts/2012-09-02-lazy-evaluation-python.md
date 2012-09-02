@@ -28,7 +28,7 @@ range(0, 5)
 {% endhighlight %}
 Therefore, each number in a sequence is evaluated on demand rather than immediately. This is a very useful feature when dealing with large sequences of numbers, and can save valuable execution time. Three other widely-used built-ins, `map`, `filter`, and `zip`, exhibit similar difference in behaviour between the two versions of Python (try it out!).
 
-A really cool implication of lazy evaluation, is the possibility of creating an infinite (yes, infinite) sequence of numbers. For example, the following code shows how to implement an infinite sequence of Fibonacci numbers in Py3k:
+A really cool implication of lazy evaluation, is the possibility of creating an infinite (yes, infinite) sequence of numbers. For example, the following code shows how to implement an infinite sequence of Fibonacci numbers in Py3k&sup1;:
 {% highlight python %}
 
 def fibonacci():
@@ -40,7 +40,7 @@ def fibonacci():
 {% endhighlight %}
 This construct is called a generator function in Python's nomenclature, and allows for lazy evaluation of the function's definition.
 
-In order to print the first 10 Fibonacci numbers using our generator function, `fibonacci`, we first need to create an iterator (or technically, a generator) object by calling `fibonacci`. Then iterate over some control sequence of 10 elements (e.g., a `range` object of 10 numbers), and use `next` built-in function on the created iterator to return successive Fibonacci numbers&sup1;:
+In order to print the first 10 Fibonacci numbers using our generator function, `fibonacci`, we first need to create an iterator (or technically, a generator) object by calling `fibonacci`. Then iterate over some control sequence of 10 elements (e.g., a `range` object of 10 numbers), and use `next` built-in function on the created iterator to return successive Fibonacci numbers:
 {% highlight python %}
 
 fibb = fibonacci()
