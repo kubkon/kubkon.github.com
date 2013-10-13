@@ -15,13 +15,13 @@ Suppose you want to minimise the function $$f(x) = x^2$$ subject to the constrai
 
 ## Exterior penalty function
 
-This can be achieved using the so-called exterior penalty function [1]. The function's aims is to penalise the unconstrained optimisation method if it converges on a minimum that is outside the feasible region of the problem. Applied to our problem, the exterior penalty function modifies the minimisation problem like so:
+This can be achieved using the so-called exterior penalty function [1]. The function's aim is to penalise the unconstrained optimisation method if it converges on a minimum that is outside the feasible region of the problem. Applied to our example, the exterior penalty function modifies the minimisation problem like so:
 
 \begin{equation}
 F(x,\rho^k) = x^2 + \frac{1}{\rho^k}\left[\min(0, x-1)\right]^2
 \end{equation}
 
-Here, $$\rho^k > 0$$ for all $$k\in\mathbb{N}_+$$ quantifies the penalty. Note that if $$x$$ lies inside the feasible region, then the problem reduces to the original problem; that is, $$F(x, \rho^k) = f(x) = x^2$$. It can be shown that as the sequence $$(\rho^k), k\in\mathbb{N}_+$$ approaches $$0$$, the solution to the modified problem approaches the solution to the original problem BUT from the outside of the feasible region. This method can readily be converted into a numerical algorithm that uses an unconstrained optimisation method:
+Here, $$\rho^k > 0$$ for all $$k\in\mathbb{N}_+$$ quantifies the penalty. Note that if $$x$$ lies inside the feasible region, then the problem reduces to the original problem; that is, $$F(x, \rho^k) = f(x) = x^2$$. It can be shown that as the sequence $$(\rho^k), k\in\mathbb{N}_+$$ approaches $$0$$, the solution to the modified problem approaches the solution to the original problem *but* from the outside of the feasible region. This method can readily be converted into a numerical algorithm that uses an unconstrained optimisation method:
 
 1. pick a number $$\rho$$ such that $$0 < \rho < 1$$
 2. starting from $$k = 1$$, minimise $$F(x, \rho^k)$$ using any unconstrained optimisation method
@@ -53,38 +53,49 @@ cdef double min_f(double x, void * params) nogil:
     return f
 {% endhighlight %}
 
-And C extension function to Python that uses Brent's minimisation method provided by the GNU Scientific Library:
+And C extension to Python that uses Brent's minimisation method provided by the GNU Scientific Library:
 
 {% highlight cython %}
-def solve(m, p, k):
-    cdef int status, iter, max_iter
-    iter = 0
-    max_iter = 100
+def solve(initial_point, penalty, k):
+    """
+    Minimises Cython function min_f using Brent's method, and
+    returns the result of the minimisation.
 
-    cdef gsl_min_fminimizer_type * T
-    cdef gsl_min_fminimizer * s
+    Arguments:
+    initial_point -- initial guess at the minimum
+    penalty -- the penalty parameter (rho)
+    k -- nonnegative natural number
+    """
+    cdef int status
+    # Initialise counter
+    cdef int iter = 0
+    cdef int max_iter = 100
 
+    # Initial region of convergence
     cdef double a = -100.0
     cdef double b = 100.0
 
+    # Initialise the minimisation problem
     cdef gsl_function F
-
-    cdef double * params = [p, k]
-
+    cdef double * params = [penalty, k]
     F.function = &min_f
     F.params = params
 
+    # Initialise Brent's method
+    cdef gsl_min_fminimizer_type * T
+    cdef gsl_min_fminimizer * s
     T = gsl_min_fminimizer_brent
     s = gsl_min_fminimizer_alloc(T)
-    gsl_min_fminimizer_set(s, &F, m, a, b)
+    gsl_min_fminimizer_set(s, &F, initial_point, a, b)
 
     status = GSL_CONTINUE
 
+    # Minimise...
     while (status == GSL_CONTINUE and iter < max_iter):
         iter = iter + 1
         status = gsl_min_fminimizer_iterate(s)
 
-        m = gsl_min_fminimizer_x_minimum(s)
+        minimum = gsl_min_fminimizer_x_minimum(s)
         a = gsl_min_fminimizer_x_lower(s)
         b = gsl_min_fminimizer_x_upper(s)
 
@@ -93,10 +104,10 @@ def solve(m, p, k):
         if status == GSL_SUCCESS:
             break
 
-    return m
+    return minimum
 {% endhighlight %}
 
-The Python script...
+Assuming the Cython module containing `min_f` and `solve` functions is called `exterior`, the following Python script demonstrates it in action:
 
 {% highlight python %}
 from exterior import solve
@@ -106,7 +117,7 @@ rho = 0.1
 # Initial minimum
 minimum = 0.0
 
-for k in range(1, 10):
+for k in range(1, 15):
     # Minimise the modified problem, and feed in the result as
     # the new starting point
     minimum = solve(minimum, rho, k)
@@ -116,7 +127,7 @@ for k in range(1, 10):
 
 {% endhighlight %}
 
-The Python script generates the following output:
+With the following output generated:
 
 {% highlight console %}
 k=1, minimum=0.9090909090909095
