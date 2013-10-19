@@ -5,23 +5,37 @@ title: 'Constrained nonlinear programming: interior penalty methods'
 
 # {{ page.title }}
 
-Recently, my PhD research has taken me on an exciting journey through the world of nonlinear programming. Nonlinear programming is a subfield of mathematical optimisation that deals with optimisation problems which are nonlinear in nature. For example, minimising a quadratic function of one real variable is considered as nonlinear since the quadratic function itself is nonlinear.
+In the previous [post]({% post_url 2013-10-13-exterior-penalty-functions %}), I have briefly outlined how to solve a constrained nonlinear problem using unconstrained nonlinear programming; in particular, using exterior penalty methods. In this post, I'll present an alternative approach called *interior penalty methods* (or barrier function methods).
 
-In this blog post, I thought I'm going to share my thoughts and recent discoveries when it comes to solving constrained nonlinear problems using unconstrained programming. In particular, I want to demonstrate a class of methods falling under the name *exterior penalty methods*.
+## The problem revisited
 
-## The problem
+Let's revisit the optimisation problem introduced in the previous post. Suppose you want to minimise the function $$f(x) = x^2$$ subject to the constraint $$x \geq 1$$. The function attains its minimum at $$x = 1$$; however, if considered without the constraint, the minimum (clearly) shifts to $$x = 0$$. Recall that the unconstrained optimisation method will find the latter as the solution to the problem since we can't enforce the feasible region on the unconstrained optimisation algorithm.
 
-Suppose you want to minimise the function $$f(x) = x^2$$ subject to the constraint $$x \geq 1$$. The function attains its minimum at $$x = 1$$; however, if considered without the constraint, the minimum (clearly) shifts to $$x = 0$$. Since we can't enforce the feasible region (in our case, this would correspond to all $$x$$s larger or equal than $$1$$) on the unconstrained optimisation method, it is necessary to modify the problem in a way that tricks the unconstrained method into finding the minimum within the feasible region.
+## Interior penalty function
 
-## Exterior penalty function
+However, we can trick the algorithm into converging on the desired solution using the so-called interior penalty function [1]. The function's aim is to penalise the unconstrained optimisation method if it tries to leave (cross the boundary of) the feasible region of the problem. Hence, with this approach, we are required to start searching for the optimal solution of the problem within the feasible region. This is in direct opposition to the exterior penalty methods where we start outside the feasible region and slowly converge on a minimum from the *outside*.
 
-This can be achieved using the so-called exterior penalty function [1]. The function's aim is to penalise the unconstrained optimisation method if it converges on a minimum that is outside the feasible region of the problem. Applied to our example, the exterior penalty function modifies the minimisation problem like so:
+Let's create an interior penalty function for our example:
 
 \begin{equation}
-F(x,\rho^k) = x^2 + \frac{1}{\rho^k}\left[\min(0, x-1)\right]^2
+F(x,\rho^k) = x^2 - \rho^k\ln(x-1)
 \end{equation}
 
-Here, $$\rho^k > 0$$ for all $$k\in\mathbb{N}_+$$ quantifies the penalty. Note that if $$x$$ lies inside the feasible region, then the problem reduces to the original problem; that is, $$F(x, \rho^k) = f(x) = x^2$$. It can be shown that as the sequence $$(\rho^k), k\in\mathbb{N}_+$$ approaches $$0$$, the solution to the modified problem approaches the solution to the original problem *but* from the outside of the feasible region. This method can readily be converted into a numerical algorithm that uses an unconstrained optimisation method:
+The first derivative of $$F$$ with respect to $$x$$ looks as follows:
+
+\begin{equation}
+\frac{\partial F}{\partial x} = 2x - \rho^k\cdot\frac{1}{x - 1}
+\end{equation}
+
+Equating the derivative to zero, and noting that by definition $$x > 1$$ (since we start in the feasible region of the problem), yields the solution to the modified optimisation problem:
+
+\begin{equation}
+x = \frac{1}{2} + \frac{\sqrt{1 + 2\rho^k}}{2}
+\end{equation}
+
+Note that as $$\rho^k \rightarrow 0$$ with $$k\rightarrow\infty$$, the solution converges to $$x = 1$$. That is, the solution to the original optimisation problem!
+
+This method can readily be converted into a numerical algorithm that uses an unconstrained optimisation method:
 
 1. pick a number $$\rho$$ such that $$0 < \rho < 1$$
 2. starting from $$k = 1$$, minimise $$F(x, \rho^k)$$ using any unconstrained optimisation method
@@ -29,34 +43,30 @@ Here, $$\rho^k > 0$$ for all $$k\in\mathbb{N}_+$$ quantifies the penalty. Note t
 
 ## Cython & Python implementation
 
-To finish off this blog post, I've included an exemplary implementation of the exterior penalty method for the presented problem in Cython and Python. Why Cython? With Cython, it is very easy to hook into the C-based GNU Scientific Library (which in turn provides the most popular unconstrained optimisation algorithms), and then execute the code from the Python level as a C extension to said language.
+To finish off this blog post, an exemplary implementation of the interior penalty method in Cython and Python. Like in the previous post, numerical minimisation is performed using algorithms provided by the GNU Scientific Library.
 
 The objective function to be minimised writted in Cython:
 
 {% highlight cython %}
 from cython_gsl cimport *
 
-from libc.math cimport pow
+from libc.math cimport pow, log
 
 cdef double min_f(double x, void * params) nogil:
     # Extract params
     cdef double * ps = <double *> params
-    # Compute penalty
-    cdef double penalty = pow(ps[0], ps[1])
-
+    # Compute interior penalty function
+    cdef double barrier = (-1) * ps[0] * log(x - 1)
+    # Compute original function value
     cdef double f = pow(x, 2)
 
-    # If outside feasible region, add the penalty
-    if 0 > (x - 1):
-        f = f + 1 / penalty * pow(x - 1, 2)
-
-    return f
+    return f + barrier
 {% endhighlight %}
 
 And C extension to Python that uses Brent's minimisation method provided by the GNU Scientific Library:
 
 {% highlight cython %}
-def solve(initial_point, penalty, k):
+def solve(initial_point, penalty):
     """
     Minimises Cython function min_f using Brent's method, and
     returns the result of the minimisation.
@@ -64,7 +74,6 @@ def solve(initial_point, penalty, k):
     Arguments:
     initial_point -- initial guess at the minimum
     penalty -- the penalty parameter (rho)
-    k -- nonnegative natural number
     """
     cdef int status
     # Initialise counter
@@ -72,12 +81,14 @@ def solve(initial_point, penalty, k):
     cdef int max_iter = 100
 
     # Initial region of convergence
-    cdef double a = -100.0
+    # NOTE that the region of convergence encompasses
+    # all x's greated than 1
+    cdef double a = 1.0 + 1e-12
     cdef double b = 100.0
 
     # Initialise the minimisation problem
     cdef gsl_function F
-    cdef double * params = [penalty, k]
+    cdef double * params = [penalty]
     F.function = &min_f
     F.params = params
 
@@ -107,46 +118,40 @@ def solve(initial_point, penalty, k):
     return minimum
 {% endhighlight %}
 
-Assuming the Cython module containing `min_f` and `solve` functions is called `exterior`, the following Python script demonstrates it in action:
+Assuming the Cython module containing `min_f` and `solve` functions is called `interior`, the following Python script demonstrates it in action:
 
 {% highlight python %}
-from exterior import solve
+from interior import solve
 
-# Rho (penalty)
-rho = 0.1
 # Initial minimum
-minimum = 0.0
+minimum = 3
 
-for k in range(1, 15):
+# Penalty parameter
+penalties = map(lambda x: x/10, range(9, 0, -1))
+
+for penalty in penalties:
     # Minimise the modified problem, and feed in the result as
     # the new starting point
-    minimum = solve(minimum, rho, k)
+    minimum = solve(minimum, penalty)
     
-    print("k={}, minimum={}".format(k, minimum))
-
-
+    print("penalty=%.1f, minimum=%f" % (penalty, minimum))
 {% endhighlight %}
 
 With the following output generated:
 
 {% highlight console %}
-k=1, minimum=0.9090909090909095
-k=2, minimum=0.990099009900986
-k=3, minimum=0.9990009990009904
-k=4, minimum=0.9999000099989902
-k=5, minimum=0.9999900001000043
-k=6, minimum=0.999999000000997
-k=7, minimum=0.9999999000000095
-k=8, minimum=0.9999999899999891
-k=9, minimum=1.0000000049011502
-k=10, minimum=1.0000000049011502
-k=11, minimum=1.0000000049011502
-k=12, minimum=1.0000000049011502
-k=13, minimum=1.0000000049011502
-k=14, minimum=1.0000000049011502
+penalty=0.9, minimum=1.336660
+penalty=0.8, minimum=1.306226
+penalty=0.7, minimum=1.274597
+penalty=0.6, minimum=1.241620
+penalty=0.5, minimum=1.207107
+penalty=0.4, minimum=1.170820
+penalty=0.3, minimum=1.132455
+penalty=0.2, minimum=1.091611
+penalty=0.1, minimum=1.047722
 {% endhighlight %}
 
-It is clear that the algorithm yields the correct solution to the minimisation problem, and the precision of the solution increases with each iteration until the saturation level is reached (after 9th iteration).
+Clearly, as the penalty, $$\rho^k$$, decreases to zero, the solution to the modified optimisation problem approaches the solution to the original problem.
 
 ## References
 
