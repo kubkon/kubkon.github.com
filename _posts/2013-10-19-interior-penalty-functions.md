@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 'Constrained nonlinear programming: exterior penalty methods'
+title: 'Constrained nonlinear programming: interior penalty methods'
 ---
 
 # {{ page.title }}

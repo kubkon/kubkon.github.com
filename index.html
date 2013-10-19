@@ -4,9 +4,12 @@ title: Jakub Konka
 ---
 
 <div id="main">
-  <ul class="posts">
+  <table class="posts">
     {% for post in site.posts %}
-      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+      <tr>
+        <td class="date">{{ post.date | date_to_string }}</td>
+        <td><a href="{{ post.url }}">{{ post.title }}</a></td>
+      </tr>
     {% endfor %}
-  </ul>
+  </table>
 </div>

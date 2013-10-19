@@ -9,12 +9,12 @@ html, body {
 
 body {
   background-color: white;
-  font: 16px / 1.231 "Helvetica", sans-serif;
+  font: 20px "Helvetica", sans-serif;
   text-align: center;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-size: 18px;
+  font-size: 22px;
   margin-top: 1.5em;
 }
 
@@ -49,23 +49,28 @@ blockquote {
   background: #ddd;
 }
 
-ul.posts {
+table, tr, td, th .posts {
+  border: 0;
+}
+
+table.posts {
   list-style-type: none;
   margin-bottom: 2em;
 }
 
-ul.posts li {
+table.posts td {
   line-height: 1.75em;
 }
 
-ul.posts span {
+table.posts td.date{
   color: #aaa;
   font-size: 80%;
+  width: 125px;
 }
 
 .site {
   text-align: left;
-  width: 600px;
+  width: 700px;
   margin: 3em auto 2em auto;
 }
 
