@@ -61,13 +61,46 @@ If the contraction step fails, that is, if $$f(x^C) \ge f(x^H)$$, then, as the l
 
 ![Shrinking step](/assets/images/nelder-mead/shrinking.png)
 
+### The algorithm revisited
+
+Taking it all together, the algorithm proceeds as follows. For any given simplex $$\{x^L, x^M, x^H\}$$,
+
+1. Compute the reflected point, $$x^R$$
+2. If $$f(x^R) < f(x^L)$$, then compute the expanded point, $$x^E$$
+
+    2.1. If $$f(x^E) < f(x^R)$$, then assign $$x^H := x^E$$, and start over
+
+    2.2. Otherwise, assign $$x^H := x^R$$, and start over
+
+3. If $$f(x^L) \le f(x^R) \le f(x^M)$$, then assign $$x^H := x^R$$, and start over
+4. Otherwise, select $$x' = \arg\min(f(x^H), f(x^R))$$
+5. Compute the contracted point
+
+    5.1 If $$f(x^C) \le f(x')$$, then assign $$x^H := x^C$$, and start over
+
+    5.2 Otherwise, shrink the simplex, and start over
+
 ## Examples
+
+Having described the theory, let's look at some examples. Firstly, consider minimising the function $$f(x_1, x_2) = x_1^2 + x_2^2 - 3x_1 - x_1x_2 + 3$$. This function has one global minimum at a point $$x = (2, 1)$$. The path of the simplex algorithm is overlaid on the contour plot of the objective function:
 
 ![One minimum](/assets/images/nelder-mead/one-minimum.png)
 
+And a more interactive version:
+
 ![One minimum: gif](/assets/images/nelder-mead/one-minimum.gif)
 
+Notice that the algorithm after a series of reflection, expansion, contraction, and shrinking steps converges to the minimum.
+
+### Multiple minima
+
+It becomes quite problematic for the algorithm if the function under consideration has more than one local minimum. Then, the algorithm is not guaranteed to converge to the global one. Consider an example $$f(x_1, x_2) = x_1^4 + x_2^4 - \frac{5}{4} x_1^2 + \frac{1}{4}$$. This function has two minima at points $$(0.8, 0)$$ and $$(-0.8, 0)$$. Depending on the choice of the initial simplex, the algorithm might converge to either of the two. Therefore, it is important to correctly pick the initial simplex for a given problem.
+
+For example, starting off with the simplex $$\{(-2,0), (-1,2), (-1.75,2)\}$$ produces the following result:
+
 ![Two minima: left](/assets/images/nelder-mead/two-minima-left.png)
+
+While, starting off at $$\{(2,0), (1,2), (1.75,2)\}$$, produces:
 
 ![Two minima: right](/assets/images/nelder-mead/two-minima-right.png)
 
