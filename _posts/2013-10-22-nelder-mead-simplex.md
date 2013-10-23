@@ -82,7 +82,9 @@ Taking it all together, the algorithm proceeds as follows. For any given simplex
 
 ## Examples
 
-Having described the theory, let's look at some examples. Firstly, consider minimising the function $$f(x_1, x_2) = x_1^2 + x_2^2 - 3x_1 - x_1x_2 + 3$$. This function has one global minimum at a point $$x = (2, 1)$$. The path of the simplex algorithm is overlaid on the contour plot of the objective function:
+Having described the theory, let's look at some examples. The full source code for the examples shown in this post can be downloaded from [GitHub](https://github.com/kubkon/simplex).
+
+Firstly, consider minimising the function $$f(x_1, x_2) = x_1^2 + x_2^2 - 3x_1 - x_1x_2 + 3$$. This function has one global minimum at a point $$x = (2, 1)$$. The path of the simplex algorithm is overlaid on the contour plot of the objective function:
 
 ![One minimum](/assets/images/nelder-mead/one-minimum.png)
 
@@ -103,6 +105,18 @@ For example, starting off with the simplex $$\{(-2,0), (-1,2), (-1.75,2)\}$$ pro
 While, starting off at $$\{(2,0), (1,2), (1.75,2)\}$$, produces:
 
 ![Two minima: right](/assets/images/nelder-mead/two-minima-right.png)
+
+### No minimum
+
+Finally, if the function does not have a minimum, then the algorithm will inevitably fail to converge (which is as expected). However, if you are attempting to implement your own version of the Simplex algorithm, it is important to remember about this eventuality. After all, in real world, it is sometimes almost impossible to determine whether the problem we are trying to optimise has an optimum value.
+
+Consider an example $$f(x_1, x_2) = x_1x_2$$. The function does not have a minimum (nor a maximum). However, it does have a stationary point at $$(0,0)$$. If we run a simplex algorithm in the search of a minimum, it will never converge. The following contour plot shows the search path for 8 iterations of the algorithm:
+
+![No minimum](/assets/images/nelder-mead/no-minimum.png)
+
+And a more interactive version:
+
+![No minimum: gif](/assets/images/nelder-mead/no-minimum.gif)
 
 ## References
 
