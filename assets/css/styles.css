@@ -10,6 +10,7 @@ html, body {
 body {
   background-color: white;
   font: 20px "Helvetica", sans-serif;
+  line-height: 150%;
   text-align: center;
 }
 
@@ -50,6 +51,7 @@ blockquote {
 }
 
 table, tr, td, th .posts {
+  margin-top: 2em;
   border: 0;
 }
 
@@ -102,6 +104,21 @@ table.posts td.date{
   background: #0c0;
 }
 
+.site .about {
+  overflow: hidden;
+}
+
+.site .about .bio {
+  width: 450px;
+  margin-right: 1em;
+  float: left;
+}
+
+.site .about .photo {
+  margin: 1em;
+  overflow: hidden;
+}
+
 .site .footer {
   font-size: 80%;
   color: #666;
@@ -127,7 +144,7 @@ table.posts td.date{
   margin-right: 3em;
 }
 
-.site .footer .about {
+.site .footer .other {
   float: right;
   text-align: right;
   margin-top: 0.5em;
