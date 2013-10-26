@@ -73,8 +73,9 @@ table.posts td.date{
 
 .site {
   text-align: left;
-  width: 60%;
   margin: 3em auto 2em auto;
+  padding-left: 20%;
+  padding-right: 20%;
 }
 
 .title {
@@ -106,14 +107,21 @@ table.posts td.date{
 }
 
 .about {
-  overflow: auto;
+  overflow: hidden;
 }
 
 .about .photo img {
   max-width: 100%;
   border-radius: 50%;
   margin: 1em;
-  float: right;
+}
+
+.about .photo {
+  float: left;
+}
+
+.about .bio {
+  float: left;
 }
 
 .site .footer {
