@@ -4,8 +4,13 @@
 
 $base-font-size: 20px
 $base-line-height: 15px
+
+$heading-font-sizes: 40px, 35px, 30px, 25px, 20px, 20px
+
 $background-color: #fff
 $foreground-color: #333
+$link-color: #000
+$link-hover-color: #090
 
 +establish-baseline
 
@@ -18,4 +23,70 @@ html
   background: $background-color
   color: $foreground-color
 
+@for $i from 1 through 6
+  h#{$i}
+    $font-size: nth($heading-font-sizes, $i)
+    +adjust-font-size-to($font-size)
+    // +leader(1, $font-size)
+    +trailer(1, $font-size)
+    font-weight: bold
 
+h1
+  $font-size: nth($heading-font-sizes, 1)
+  +leader(2, $font-size)
+  +trailer(2, $font-size)
+
+p
+  +trailer(2)
+
+a
+  color: $link-color
+  text-decoration: underline
+
+a:hover
+  color: $background-color
+  background-color: $link-hover-color
+  text-decoration: none
+
+#site
+  width: 40em
+  margin: 0 auto
+  position: relative
+  +leader(2)
+
+#title
+  +trailer(2)
+
+#about
+  max-width: 30em
+  .photo
+    position: absolute
+    top: 0
+    right: 0
+    +border-radius(15%)
+    background: url(/images/jakub.jpeg) no-repeat
+    +background-size(100%)
+    width: 8em
+    height: 8em
+    overflow: hidden
+    img
+      width: 8em
+      height: 8em
+
+#main
+  +leader(4)
+
+#posts
+  time
+    +leader(1)
+    display: block
+
+#footer
+  overflow: auto
+  +leader(4)
+  +padding-trailer(2)
+  li.contact
+    width: 40%
+  li
+    width: 30%
+    float: left
