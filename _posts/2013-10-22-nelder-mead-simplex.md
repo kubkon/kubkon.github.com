@@ -17,7 +17,7 @@ Suppose we are given simplex with the following vertices $$\{x_0, x_1, x_2\}$$, 
 
 In the reflection step, the point for which the function achieves the highest value, $$x^H$$, is potentially replaced with a point that is reflected against the edge of the simplex connecting the remaining points. That is, if you imagine the edge connecting the points $$x^L$$ --- $$x^M$$ being a mirror, we reflect $$x^H$$ against that mirror:
 
-![Reflection step](/assets/nelder-mead/reflection.png)
+![Reflection step](/images/nelder-mead/reflection.png)
 
 Or mathematically
 
@@ -31,7 +31,7 @@ where $$\alpha>0$$ (and usually $$\alpha=1$$), and $$\bar{x} = \frac{x^L + x^M}{
 
 If it so happens that the reflected point is better than the current minimum, i.e., if $$f(x^R) < f(x^L)$$, then perhaps by moving even further in that direction, we'll further minimise the function. This step is referred to as the expansion step:
 
-![Expansion step](/assets/nelder-mead/expansion.png)
+![Expansion step](/images/nelder-mead/expansion.png)
 
 Or mathematically
 
@@ -45,7 +45,7 @@ where $$\gamma > 1$$, and typically $$\gamma = 2$$.
 
 If, however, the reflected point, $$x^R$$ does not offer a significant improvement over $$x^H$$, i.e., if $$f(x^H) \ge f(x^R) > f(x^M)$$, then we need to test for points between either the reflected point and the centroid, or the highest value point and the centroid. If $$f(x^R) < f(x^H)$$, then we choose the first pair; otherwise, we settle on the latter one. Having selected the appropriate pair of points, we contract the distance between the two. Suppose for the moment that we have selected $$x^R$$ to contract against. Then, the contraction step looks as follows:
 
-![Contraction step](/assets/nelder-mead/contraction.png)
+![Contraction step](/images/nelder-mead/contraction.png)
 
 Or mathematically
 
@@ -59,7 +59,7 @@ where $$0 < \beta < 1$$, and typically $$\beta = \frac{1}{2}$$.
 
 If the contraction step fails, that is, if $$f(x^C) \ge f(x^H)$$, then, as the last resort, we shrink the simplex by half towards the current minimum, $$x^L$$:
 
-![Shrinking step](/assets/nelder-mead/shrinking.png)
+![Shrinking step](/images/nelder-mead/shrinking.png)
 
 ### The algorithm revisited
 
@@ -86,11 +86,11 @@ Having described the theory, let's look at some examples. The full source code f
 
 Firstly, consider minimising the function $$f(x_1, x_2) = x_1^2 + x_2^2 - 3x_1 - x_1x_2 + 3$$. This function has one global minimum at a point $$x = (2, 1)$$. The path of the simplex algorithm is overlaid on the contour plot of the objective function:
 
-![One minimum](/assets/nelder-mead/one-minimum.png)
+![One minimum](/images/nelder-mead/one-minimum.png)
 
 And a more interactive version:
 
-![One minimum: gif](/assets/nelder-mead/one-minimum.gif)
+![One minimum: gif](/images/nelder-mead/one-minimum.gif)
 
 Notice that the algorithm after a series of reflection, expansion, contraction, and shrinking steps converges to the minimum.
 
@@ -100,11 +100,11 @@ It becomes quite problematic for the algorithm if the function under considerati
 
 For example, starting off with the simplex $$\{(-2,0), (-1,2), (-1.75,2)\}$$ produces the following result:
 
-![Two minima: left](/assets/nelder-mead/two-minima-left.png)
+![Two minima: left](/images/nelder-mead/two-minima-left.png)
 
 While, starting off at $$\{(2,0), (1,2), (1.75,2)\}$$, produces:
 
-![Two minima: right](/assets/nelder-mead/two-minima-right.png)
+![Two minima: right](/images/nelder-mead/two-minima-right.png)
 
 ### No minimum
 
@@ -112,11 +112,11 @@ Finally, if the function does not have a minimum, then the algorithm will inevit
 
 Consider an example $$f(x_1, x_2) = x_1x_2$$. The function does not have a minimum (nor a maximum). However, it does have a stationary point at $$(0,0)$$. If we run the simplex algorithm in the search of a minimum, it will never converge. The following contour plot shows the search path for 8 iterations of the algorithm:
 
-![No minimum](/assets/nelder-mead/no-minimum.png)
+![No minimum](/images/nelder-mead/no-minimum.png)
 
 And a more interactive version:
 
-![No minimum: gif](/assets/nelder-mead/no-minimum.gif)
+![No minimum: gif](/images/nelder-mead/no-minimum.gif)
 
 ## References
 
