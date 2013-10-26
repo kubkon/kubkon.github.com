@@ -1,4 +1,6 @@
-.DS_Store*
 _site
-Gemfile*
+.sass-cache
+.DS_Store
 *.graffle
+css/syntax.css
+

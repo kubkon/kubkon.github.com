@@ -1,0 +1,21 @@
+@import compass
+
++global-reset
+
+$base-font-size: 20px
+$base-line-height: 15px
+$background-color: #fff
+$foreground-color: #333
+
++establish-baseline
+
+@import syntax
+
+html
+  +adjust-leading-to(2)
+  margin: 0 1em
+  font-family: "Lucida Grande", sans-serif
+  background: $background-color
+  color: $foreground-color
+
+

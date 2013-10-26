@@ -13,7 +13,6 @@
     <![endif]-->
 
     <link href="/css/screen.css" rel="stylesheet" type="text/css" media="screen, projection" />
-    <link href="/css/syntax.css" rel="stylesheet" type="text/css" />
     <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
         extensions: ["tex2jax.js"],
@@ -29,15 +28,15 @@
   </head>
 
   <body>
-    <div class="site">
-      <div class="title">
+    <div id="site">
+      <div id="title">
         <a href="/">Jakub Konka</a>
         <a href="/" class="extra">There exists...</a>
       </div>
 
       {{ content }}
 
-      <div class="footer">
+      <div id="footer">
         <div class="contact">
           Jakub Konka<br />
           kubkon@jakubkonka.com
@@ -52,15 +51,5 @@
         </div>
       </div>
     </div>
-    
-    <a href="https://github.com/kubkon"><img id="github_ribbon" style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" alt="Fork me on GitHub"></a>
-    
-    <script type="text/javascript" charset="utf-8">
-      if (screen.width <= 480)
-      {
-        document.getElementById('github_ribbon').hidden = true;
-      }
-    </script>
-    
   </body>
 </html>
