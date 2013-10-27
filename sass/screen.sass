@@ -55,11 +55,9 @@ a:hover
   +leader(2)
 
 #title
-  +trailer(2)
+  @extend h1
   a
     color: #0c0
-    font-weight: bold
-    font-size: nth($heading-font-sizes, 1)
 
 #about
   max-width: 30em
@@ -99,3 +97,30 @@ a:hover
   a:hover
     background-color: mix($link-hover-color, $footer-link-color)
     color: $background-color
+
+@media screen and (max-width: 800px)
+  $base-font-size: 16px
+  $base-line-height: 12px
+  +establish-baseline
+  html
+    +adjust-leading-to(2)
+  #site
+    width: 94%
+  #about
+    max-width: 100%
+    .photo
+      width: 3em
+      height: 3em
+      overflow: hidden
+      position: absolute
+      top: 0
+      right: 0
+      img
+        width: 3em
+        height: 3em
+  #footer
+    +adjust-font-size-to(12px, 1.5)
+
+@media screen and (max-width: 450px)
+  #footer
+    +adjust-font-size-to(10px, 1.5)
