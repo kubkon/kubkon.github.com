@@ -41,7 +41,7 @@ p
 
 a
   color: $link-color
-  text-decoration: underline
+  text-decoration: none
 
 a:hover
   color: $background-color
@@ -56,12 +56,15 @@ a:hover
 
 #title
   +trailer(2)
+  a
+    color: #0c0
+    font-weight: bold
+    font-size: nth($heading-font-sizes, 1)
 
 #about
   max-width: 30em
   .photo
     position: absolute
-    top: 0
     right: 0
     +border-radius(15%)
     background: url(/images/jakub.jpeg) no-repeat
@@ -90,3 +93,9 @@ a:hover
   li
     width: 30%
     float: left
+  $footer-link-color: #8470ff
+  a
+    color: mix($link-hover-color, $footer-link-color)
+  a:hover
+    background-color: mix($link-hover-color, $footer-link-color)
+    color: $background-color
