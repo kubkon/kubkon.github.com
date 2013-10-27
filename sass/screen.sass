@@ -49,6 +49,9 @@ a:hover
   background-color: $link-hover-color
   text-decoration: none
 
+.footnote
+  +adjust-font-size-to(12px)
+
 #site
   width: 40em
   margin: 0 auto
@@ -156,11 +159,11 @@ em strong, strong em
       img
         width: 3em
         height: 3em
-  #footer
-    +adjust-font-size-to(12px, 1.5)
   img
     max-width: 100%
 
-@media screen and (max-width: 450px)
+@media screen and (max-width: 600px)
   #footer
-    +adjust-font-size-to(9px, 1.5)
+    li
+      width: 100%
+      +trailer(1)
