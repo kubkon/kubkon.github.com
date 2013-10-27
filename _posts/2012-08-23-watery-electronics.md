@@ -17,17 +17,14 @@ Anyhow, for completeness, I will outline the steps I have taken to save my MBA f
 
 When I accidentally knocked my only just refilled glass of water, the water mainly spread across the keyboard of the MBA; however, I believe that some of it got into the opening separating the bottom chassis from the screen (where the vent is located). The laptop was at the time of the incident turned on, and connected to the external power source with a [MagSafe](http://en.wikipedia.org/wiki/MagSafe) adapter. Hence, all the ingredients for a disaster were there.
 
-The steps I took in an attempt at remedying the situation can be succinctly summarized as follows:
-
-1. First and foremost, I disconnected the laptop from the external power source. (The laptop shut itself down; hence, there was no need for me to manually turn it off. Furthermore, I restrained from pressing the power button, and checking whether it is indeed turned off in order to avoid turning the laptop on again, and risking the possibility of a short-circuit.)
-2. I turned the laptop sideways to get rid off as much water as possible from the keyboard area.
-3. With a handful of paper towels, I wiped out the rest.
-4. Finally, I let it dry for a week. The laptop was left in an open position, resting on a few paper towels upside down.
+The steps I took in an attempt at remedying the situation can be succinctly summarized as follows. First and foremost, I disconnected the laptop from the external power source. (The laptop shut itself down; hence, there was no need for me to manually turn it off. Furthermore, I restrained from pressing the power button, and checking whether it is indeed turned off in order to avoid turning the laptop on again, and risking the possibility of a short-circuit.). I turned the laptop sideways to get rid off as much water as possible from the keyboard area. With a handful of paper towels, I wiped out the rest. Finally, I let it dry for a week. The laptop was left in an open position, resting on a few paper towels upside down.
 
 ## Further reading
 
 For interested, some links I found useful and informative after the incident:
 
-+ [Electronics Water Damage](http://www.ifixit.com/Wiki/Electronics_Water_Damage) Techniques for generalized water damage troubleshooting and recovery.
-+ [Water and Electronics?](http://electronics.stackexchange.com/questions/14196/water-and-electronics) Question posted on StackExchange devoted to electronics and electrical engineering.
-+ [Using desiccants to soak up wet electronics](http://reviews.cnet.com/8301-13727_7-57330736-263/using-desiccants-to-soak-up-wet-electronics/) CNET article on water damage threats to portable electronics.
+[Electronics Water Damage](http://www.ifixit.com/Wiki/Electronics_Water_Damage) Techniques for generalized water damage troubleshooting and recovery.
+
+[Water and Electronics?](http://electronics.stackexchange.com/questions/14196/water-and-electronics) Question posted on StackExchange devoted to electronics and electrical engineering.
+
+[Using desiccants to soak up wet electronics](http://reviews.cnet.com/8301-13727_7-57330736-263/using-desiccants-to-soak-up-wet-electronics/) CNET article on water damage threats to portable electronics.

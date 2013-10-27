@@ -63,22 +63,11 @@ If the contraction step fails, that is, if $$f(x^C) \ge f(x^H)$$, then, as the l
 
 ### The algorithm revisited
 
-Taking it all together, the algorithm proceeds as follows. For any given simplex $$\{x^L, x^M, x^H\}$$,
+Taking it all together, the algorithm proceeds as follows. For any given simplex $$\{x^L, x^M, x^H\}$$, compute the reflected point, $$x^R$$.
 
-1. Compute the reflected point, $$x^R$$
-2. If $$f(x^R) < f(x^L)$$, then compute the expanded point, $$x^E$$
+If $$f(x^R) < f(x^L)$$, then compute the expanded point, $$x^E$$. If $$f(x^E) < f(x^R)$$, then assign $$x^H := x^E$$, and start over. Otherwise, assign $$x^H := x^R$$, and start over.
 
-    2.1. If $$f(x^E) < f(x^R)$$, then assign $$x^H := x^E$$, and start over
-
-    2.2. Otherwise, assign $$x^H := x^R$$, and start over
-
-3. If $$f(x^L) \le f(x^R) \le f(x^M)$$, then assign $$x^H := x^R$$, and start over
-4. Otherwise, select $$x' = \arg\min(f(x^H), f(x^R))$$
-5. Compute the contracted point
-
-    5.1 If $$f(x^C) \le f(x')$$, then assign $$x^H := x^C$$, and start over
-
-    5.2 Otherwise, shrink the simplex, and start over
+If $$f(x^L) \le f(x^R) \le f(x^M)$$, then assign $$x^H := x^R$$, and start over. Otherwise, select $$x' = \arg\min(f(x^H), f(x^R))$$. Compute the contracted point, $$x^C$$. If $$f(x^C) \le f(x')$$, then assign $$x^H := x^C$$, and start over. Otherwise, shrink the simplex, and start over.
 
 ## Examples
 

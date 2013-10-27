@@ -21,11 +21,9 @@ This can be achieved using the so-called exterior penalty function [1]. The func
 F(x,\rho^k) = x^2 + \frac{1}{\rho^k}\left[\min(0, x-1)\right]^2
 \end{equation}
 
-Here, $$\rho^k > 0$$ for all $$k\in\mathbb{N}_+$$ quantifies the penalty. Note that if $$x$$ lies inside the feasible region, then the problem reduces to the original problem; that is, $$F(x, \rho^k) = f(x) = x^2$$. It can be shown that as the sequence $$(\rho^k), k\in\mathbb{N}_+$$ approaches $$0$$, the solution to the modified problem approaches the solution to the original problem *but* from the outside of the feasible region. This method can readily be converted into a numerical algorithm that uses an unconstrained optimisation method:
+Here, $$\rho^k > 0$$ for all $$k\in\mathbb{N}_+$$ quantifies the penalty. Note that if $$x$$ lies inside the feasible region, then the problem reduces to the original problem; that is, $$F(x, \rho^k) = f(x) = x^2$$. It can be shown that as the sequence $$(\rho^k), k\in\mathbb{N}_+$$ approaches $$0$$, the solution to the modified problem approaches the solution to the original problem *but* from the outside of the feasible region.
 
-1. pick a number $$\rho$$ such that $$0 < \rho < 1$$
-2. starting from $$k = 1$$, minimise $$F(x, \rho^k)$$ using any unconstrained optimisation method
-3. feed in the results of the minimisation as the new starting point to the minimisation method, and increment $$k$$
+This method can readily be converted into a numerical algorithm that uses an unconstrained optimisation method. Pick a number $$\rho$$ such that $$0 < \rho < 1$$. Starting from $$k = 1$$, minimise $$F(x, \rho^k)$$ using any unconstrained optimisation method. Feed in the results of the minimisation as the new starting point to the minimisation method, and increment $$k$$.
 
 ## Cython & Python implementation
 

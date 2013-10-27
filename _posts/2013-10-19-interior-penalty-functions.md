@@ -35,11 +35,7 @@ x = \frac{1}{2} + \frac{\sqrt{1 + 2\rho^k}}{2}
 
 Note that as $$\rho^k \rightarrow 0$$ with $$k\rightarrow\infty$$, the solution converges to $$x = 1$$. That is, the solution to the original optimisation problem!
 
-This method can readily be converted into a numerical algorithm that uses an unconstrained optimisation method:
-
-1. pick a number $$\rho$$ such that $$0 < \rho < 1$$
-2. starting from $$k = 1$$, minimise $$F(x, \rho^k)$$ using any unconstrained optimisation method
-3. feed in the results of the minimisation as the new starting point to the minimisation method, and increment $$k$$
+This method can readily be converted into a numerical algorithm that uses an unconstrained optimisation method. Pick a number $$\rho$$ such that $$0 < \rho < 1$$. Starting from $$k = 1$$, minimise $$F(x, \rho^k)$$ using any unconstrained optimisation method. Finally, feed in the results of the minimisation as the new starting point to the minimisation method, and increment $$k$$.
 
 ## Cython & Python implementation
 

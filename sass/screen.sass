@@ -15,6 +15,7 @@ $link-hover-color: #090
 +establish-baseline
 
 @import syntax
+@import math-jax
 
 html
   +adjust-leading-to(2)
@@ -41,7 +42,7 @@ p
 
 a
   color: $link-color
-  text-decoration: none
+  text-decoration: underline
 
 a:hover
   color: $background-color
@@ -81,6 +82,36 @@ a:hover
   time
     +leader(1)
     display: block
+  a
+    text-decoration: none
+
+pre
+  +trailer(2)
+  +rhythm-borders(2px)
+  background: #f0f0f0
+  color: $foreground-color
+  overflow: auto
+
+code
+  font-family: "Menlo", monospace
+  font-weight: normal
+
+blockquote
+  color: lighten($foreground-color, 25%)
+  border-left: 0.25em solid
+  margin-left: 1.5em
+  margin-right: 1.5em
+  padding-left: 1em
+  
+em
+  font-style: italic
+
+strong
+  font-weight: bold
+
+em strong, strong em
+  font-style: italic
+  font-weight: bold
 
 #footer
   overflow: auto
@@ -94,6 +125,7 @@ a:hover
   $footer-link-color: #8470ff
   a
     color: mix($link-hover-color, $footer-link-color)
+    text-decoration: none
   a:hover
     background-color: mix($link-hover-color, $footer-link-color)
     color: $background-color
@@ -120,6 +152,8 @@ a:hover
         height: 3em
   #footer
     +adjust-font-size-to(12px, 1.5)
+  img
+    max-width: 100%
 
 @media screen and (max-width: 450px)
   #footer
