@@ -17,21 +17,27 @@ However, we can trick the algorithm into converging on the desired solution usin
 
 Let's create an interior penalty function for our example:
 
+$$
 \begin{equation}
 F(x,\rho^k) = x^2 - \rho^k\ln(x-1)
 \end{equation}
+$$
 
 The first derivative of $$F$$ with respect to $$x$$ looks as follows:
 
+$$
 \begin{equation}
 \frac{\partial F}{\partial x} = 2x - \rho^k\cdot\frac{1}{x - 1}
 \end{equation}
+$$
 
 Equating the derivative to zero, and noting that by definition $$x > 1$$ (since we start in the feasible region of the problem), yields the solution to the modified optimisation problem:
 
+$$
 \begin{equation}
 x = \frac{1}{2} + \frac{\sqrt{1 + 2\rho^k}}{2}
 \end{equation}
+$$
 
 Note that as $$\rho^k \rightarrow 0$$ with $$k\rightarrow\infty$$, the solution converges to $$x = 1$$. That is, the solution to the original optimisation problem!
 

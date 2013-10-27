@@ -21,9 +21,11 @@ In the reflection step, the point for which the function achieves the highest va
 
 Or mathematically
 
+$$
 \begin{equation}
 x^R = \bar{x} + \alpha(\bar{x} - x^H)
 \end{equation}
+$$
 
 where $$\alpha>0$$ (and usually $$\alpha=1$$), and $$\bar{x} = \frac{x^L + x^M}{2}$$ is the centroid (or the centre of gravity) of the points $$x^L$$ and $$x^M$$. The reasoning behind the reflection step is that since the points $$x^L$$ and $$x^M$$ minimise the function for the current simplex, by reflecting $$x^H$$ against these two points, we should potentially move in the direction that further minimises the function; that is, $$f(x^R) \le f(x^H)$$.
 
@@ -35,9 +37,11 @@ If it so happens that the reflected point is better than the current minimum, i.
 
 Or mathematically
 
+$$
 \begin{equation}
 x^E = \bar{x} + \gamma(x^R - \bar{x})
 \end{equation}
+$$
 
 where $$\gamma > 1$$, and typically $$\gamma = 2$$.
 
@@ -49,9 +53,11 @@ If, however, the reflected point, $$x^R$$ does not offer a significant improveme
 
 Or mathematically
 
+$$
 \begin{equation}
 x^C = \bar{x} + \beta(x^R - \bar{x})
 \end{equation}
+$$
 
 where $$0 < \beta < 1$$, and typically $$\beta = \frac{1}{2}$$.
 
@@ -73,7 +79,15 @@ If $$f(x^L) \le f(x^R) \le f(x^M)$$, then assign $$x^H := x^R$$, and start over.
 
 Having described the theory, let's look at some examples. The full source code for the examples shown in this post can be downloaded from [GitHub](https://github.com/kubkon/simplex).
 
-Firstly, consider minimising the function $$f(x_1, x_2) = x_1^2 + x_2^2 - 3x_1 - x_1x_2 + 3$$. This function has one global minimum at a point $$x = (2, 1)$$. The path of the simplex algorithm is overlaid on the contour plot of the objective function:
+Firstly, consider minimising the function
+
+$$
+\begin{equation}
+f(x_1, x_2) = x_1^2 + x_2^2 - 3x_1 - x_1x_2 + 3.
+\end{equation}
+$$
+
+This function has one global minimum at a point $$x = (2, 1)$$. The path of the simplex algorithm is overlaid on the contour plot of the objective function:
 
 ![One minimum](/images/nelder-mead/one-minimum.png)
 
@@ -85,7 +99,15 @@ Notice that the algorithm after a series of reflection, expansion, contraction, 
 
 ### Multiple minima
 
-It becomes quite problematic for the algorithm if the function under consideration has more than one minimum. Then, the algorithm is not guaranteed to converge to the global one. Consider an example $$f(x_1, x_2) = x_1^4 + x_2^4 - \frac{5}{4} x_1^2 + \frac{1}{4}$$. This function has two minima at points $$(0.8, 0)$$ and $$(-0.8, 0)$$. Depending on the choice of the initial simplex, the algorithm might converge to either of the two. Therefore, it is important to correctly pick the initial simplex for a given problem.
+It becomes quite problematic for the algorithm if the function under consideration has more than one minimum. Then, the algorithm is not guaranteed to converge to the global one. Consider an example
+
+$$
+\begin{equation}
+f(x_1, x_2) = x_1^4 + x_2^4 - \frac{5}{4} x_1^2 + \frac{1}{4}.
+\end{equation}
+$$
+
+This function has two minima at points $$(0.8, 0)$$ and $$(-0.8, 0)$$. Depending on the choice of the initial simplex, the algorithm might converge to either of the two. Therefore, it is important to correctly pick the initial simplex for a given problem.
 
 For example, starting off with the simplex $$\{(-2,0), (-1,2), (-1.75,2)\}$$ produces the following result:
 
@@ -99,7 +121,15 @@ While, starting off at $$\{(2,0), (1,2), (1.75,2)\}$$, produces:
 
 Finally, if the function does not have a minimum, then the algorithm will inevitably fail to converge (which is as expected). However, if you are attempting to implement your own version of the Simplex algorithm, it is important to remember about this eventuality. After all, in real world, it is sometimes almost impossible to determine whether the problem we are trying to optimise has an optimum value.
 
-Consider an example $$f(x_1, x_2) = x_1x_2$$. The function does not have a minimum (nor a maximum). However, it does have a stationary point at $$(0,0)$$. If we run the simplex algorithm in the search of a minimum, it will never converge. The following contour plot shows the search path for 8 iterations of the algorithm:
+Consider an example
+
+$$
+\begin{equation}
+f(x_1, x_2) = x_1x_2.
+\end{equation}
+$$
+
+The function does not have a minimum (nor a maximum). However, it does have a stationary point at $$(0,0)$$. If we run the simplex algorithm in the search of a minimum, it will never converge. The following contour plot shows the search path for 8 iterations of the algorithm:
 
 ![No minimum](/images/nelder-mead/no-minimum.png)
 

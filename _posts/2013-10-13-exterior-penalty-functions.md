@@ -17,9 +17,11 @@ Suppose you want to minimise the function $$f(x) = x^2$$ subject to the constrai
 
 This can be achieved using the so-called exterior penalty function [1]. The function's aim is to penalise the unconstrained optimisation method if it converges on a minimum that is outside the feasible region of the problem. Applied to our example, the exterior penalty function modifies the minimisation problem like so:
 
+$$
 \begin{equation}
 F(x,\rho^k) = x^2 + \frac{1}{\rho^k}\left[\min(0, x-1)\right]^2
 \end{equation}
+$$
 
 Here, $$\rho^k > 0$$ for all $$k\in\mathbb{N}_+$$ quantifies the penalty. Note that if $$x$$ lies inside the feasible region, then the problem reduces to the original problem; that is, $$F(x, \rho^k) = f(x) = x^2$$. It can be shown that as the sequence $$(\rho^k), k\in\mathbb{N}_+$$ approaches $$0$$, the solution to the modified problem approaches the solution to the original problem *but* from the outside of the feasible region.
 
