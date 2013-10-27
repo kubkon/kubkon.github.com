@@ -57,8 +57,13 @@ a:hover
 
 #title
   @extend h1
+  $title-color: #0c0
   a
-    color: #0c0
+    color: $title-color
+    text-decoration: none
+  a:hover
+    color: $background-color
+    background-color: $title-color
     text-decoration: none
 
 #about
