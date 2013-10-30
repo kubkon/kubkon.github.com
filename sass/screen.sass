@@ -20,8 +20,9 @@ $link-hover-color: #090
 html
   +adjust-leading-to(2)
   margin: 0 1em
-  font-family: "Lucida Grande", sans-serif
   background: $background-color
+  +debug-vertical-alignment
+  font-family: "Lucida Grande", sans-serif
   color: $foreground-color
 
 @for $i from 1 through 6
@@ -61,6 +62,8 @@ a:hover
 #title
   @extend h1
   $title-color: #0c0
+  +leader(-0.25)
+  +trailer(1)
   a
     color: $title-color
     text-decoration: none
@@ -94,6 +97,8 @@ a:hover
   a
     font-weight: bold
     text-decoration: none
+  li
+    +trailer(2)
 
 pre
   +trailer(2)
