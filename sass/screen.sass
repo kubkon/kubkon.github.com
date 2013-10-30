@@ -21,7 +21,7 @@ html
   +adjust-leading-to(2)
   margin: 0 1em
   background: $background-color
-  +debug-vertical-alignment
+  // +debug-vertical-alignment
   font-family: "Lucida Grande", sans-serif
   color: $foreground-color
 
@@ -30,16 +30,23 @@ html
     $font-size: nth($heading-font-sizes, $i)
     +adjust-font-size-to($font-size)
     // +leader(1, $font-size)
-    +trailer(1, $font-size)
+    +trailer(2, $font-size)
     font-weight: bold
 
 h1
   $font-size: nth($heading-font-sizes, 1)
+  +adjust-leading-to(1.5)
   +leader(2, $font-size)
   +trailer(2, $font-size)
 
 p
   +trailer(2)
+
+p img
+  +trailer(1)
+
+div.MathJax_Display
+  +trailer(1.5)
 
 a
   color: $link-color
@@ -62,8 +69,7 @@ a:hover
 #title
   @extend h1
   $title-color: #0c0
-  +leader(-0.25)
-  +trailer(1)
+  +trailer(1.5)
   a
     color: $title-color
     text-decoration: none
