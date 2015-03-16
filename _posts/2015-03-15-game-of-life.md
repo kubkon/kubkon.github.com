@@ -10,7 +10,7 @@ Since it is the first post I've written in a longer while, I'll keep it short an
 ## The rules of the game
 The game was invented in 1970 by a British mathematician, John Conway. In the simplest terms, the game constitutes an imitation (simulation) of life. Within the game, the world is represented by a 2D grid, while each element of the grid, referred to as cell, represents living being. Yes, you guessed correctly, each cell is either alive or dead.
 
-The evolution of life is subject to certain grand rules; that is, whether the cell survives or dies from one stage of the simulation to the next is determined by the following conditions: 1) it is alive and it has exactly 2 alive neighbours (cells within distance of 1 from the current cell); or 2) it has exactly 3 alive neighbours, regardless of whether currently the cell is alive or dead. In all other cases, sadly, the cell dies.
+The evolution of life is subject to certain grand rules; that is, whether the cell survives or dies from one stage of the simulation to the next one is determined by the following conditions. The cell survives if 1) it is alive and it has exactly 2 alive neighbours (cells within distance of 1 from the current cell); or 2) it has exactly 3 alive neighbours, regardless of whether it currently is alive or dead. In all other cases, sadly, the cell dies.
 
 ## Example
 The beauty of the game comes from the fact that, depending on the initial state of the world (the distribution of live vs dead cells), the simulation may lead to a totally different (and sometimes very surprising) end state.
