@@ -10,7 +10,7 @@ layout: nil
   <id>http://kubkon.github.com/</id>
   <author>
     <name>Jakub Konka</name>
-    <email>kubkon@gmail.com</email>
+    <email>kubkon@jakubkonka.com</email>
   </author>
 
   {% for post in site.posts %}

@@ -4,3 +4,4 @@ _site
 *.graffle
 css/syntax.css
 css/math-jax.css
+*.swp
