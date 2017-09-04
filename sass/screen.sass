@@ -73,25 +73,26 @@ a:hover
   a
     color: $title-color
     text-decoration: none
+    margin-right: 0.5em
   a:hover
     color: $background-color
     background-color: $title-color
     text-decoration: none
-
-#about
-  max-width: 50em
   .photo
     position: absolute
-    right: 0
-    +border-radius(15%)
+    top: -0.5em
+    +border-radius(50%)
     background: url(/images/jakub.jpeg) no-repeat
     +background-size(100%)
-    width: 8em
-    height: 8em
+    width: 2em
+    height: 2em
     overflow: hidden
     img
-      width: 8em
-      height: 8em
+      width: 2em
+      height: 2em
+
+#about
+  max-width: 60em
 
 #main
   +leader(4)
@@ -164,16 +165,6 @@ em strong, strong em
     width: 94%
   #about
     max-width: 100%
-    .photo
-      width: 3em
-      height: 3em
-      overflow: hidden
-      position: absolute
-      top: 0
-      right: 0
-      img
-        width: 3em
-        height: 3em
   img
     max-width: 100%
 
