@@ -5,8 +5,24 @@ title: Jakub Konka
 
 <div id="about">
   <span class="bio">
-    <p>Hi! My name is Jakub Konka, but you might know by my Github handle kubkon. I'm a big believer in open source software and a big supporter of Wasm and WASI. I am currently working as an R&D engineer for Golem Factory exploring anything and everything Wasm and WASI related. I'm also actively contributing to WASI spec and Bytecode Alliance's Wasmtime runtime. Oh, and I'm a huge enthusiast of Rust lang and Zig lang.</p>
-    <p>In this web log, I'll try to reflect on the more interesting aspects of my journey through the world of software, Wasm, WASI, etc. If you would like to discuss any of the posts, feel free to drop me a line at
+    <p>Hi! My name is Jakub Konka, but you might know me by my Github handle <em>kubkon</em>. I'm a big believer in open source software and a big supporter of Wasm and WASI to which I am trying to contribute as much as possible in my spare time. To be more specific, I am currently actively contributing to the following projects/organisations:
+    <ul class="lists">
+      <li>
+        <a href="https://wasmtime.dev">wasmtime</a>, a Wasm and WASI runtime curated by the <a href="https://bytecodealliance.org">Bytecode Alliance</a> community, where I contribute and maintain the Rust implementation of the WASI spec,
+      </li>
+      <li>
+        <a href="https://wasi.dev">WASI</a>, or WebAssembly System Interface, where I work on the spec as well as the tooling such as <a href="https://github.com/WebAssembly/WASI/tree/master/tools/witx">witx</a>,
+      </li>
+      <li>
+        <a href="https://ziglang.org">Zig</a>, where I'm actively adding more and more Wasm and WASI support among other things (yep, Wasm and WASI are now <a href="https://ziglang.org/#WebAssembly-Support-Table">tier 1</a> support in Zig!),
+      </li>
+      <li>
+        <a href="https://github.com/kubkon/wasmtime-zig">wasmtime-zig</a>, a Zig embedding of wasmtime, my toy project that allows you run Wasm/WASI from within your Zig code by embedding the wasmtime runtime.
+      </li>
+    </ul>
+    </p>
+    <p>If you like my work and would like me to continue contributing to the community, you can now <a href="https://github.com/sponsors/kubkon?o=esc">sponsor me on Github</a>.</p>
+    <p>In this web log, I'll try to reflect on the more interesting aspects of my journey through the world of Wasm, WASI, Rust, and Zig. If you would like to discuss any of the posts, feel free to drop me a line at
     
 <a href = "mailto:kubkonATjakubkonkaDOTcom" 
    onclick = "this.href=this.href
@@ -18,8 +34,8 @@ or message me on Twitter at <a href="https://twitter.com/kubkon">@kubkon</a>.</p
   </span>
 </div>
 
-<div id="main">
-
+<div class="divs">
+  <h1>Posts</h1>
   <ul id="posts">
     {% for post in site.posts %}
       <li>
@@ -27,5 +43,13 @@ or message me on Twitter at <a href="https://twitter.com/kubkon">@kubkon</a>.</p
         <a href="{{ post.url }}">{{ post.title }}</a>
       </li>
     {% endfor %}
+  </ul>
+</div>
+
+<div class="divs">
+  <h1>Huge thanks to my sponsors</h1>
+  <p>I'd like to take this opportunity and thank all of my sponsors but in particular (and in no particular order!):</p>
+  <ul class="lists">
+    <li><a href="https://www.embark-studios.com/">Embark Studios</a>, a Stockholm-based games studio, who use Rust for game-dev! How cool is that?!</li>
   </ul>
 </div>
