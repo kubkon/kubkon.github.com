@@ -5,9 +5,8 @@ title: Jakub Konka
 
 <div id="about">
   <span class="bio">
-    <p>Hi! My name is Jakub, but you might know me by my Github handle <a href="https://github.com/kubkon">kubkon</a>. I'm a software engineer at Microsoft, an open-source addict and recently honoured to have become <a href="https://ziglang.org">Zig</a> core team member.</p>
-    <p>At Microsoft, I work on the <a href="https://github.com/microsoft/fluentui">Fluent UI web framework</a>, a React-based web components framework that empowers you to create beautfiful Microsoft-styled web UIs.</p>
-    <p>As a Zig core team member, on the other hand, I focus on first-class macOS support. I am the main author and contributor to the self-hosted Mach-O linker in Zig, and I have been working hard ensuring that Zig's stage1 compiler and libstd are usable on the latest macOS Big Sur running on Apple Silicon (ARM64) - no kidding, you will be able to code in Zig natively on ARM64 macOS with Zig 0.7.0 release! I am also working on a drop-in replacement for LLVM's LLD linker, <a href="https://github.com/kubkon/zld">zld</a>, with special focus on outstanding MachO support and cross-platform use.</p>
+    <p>Hi! My name is Jakub, but you might know me by my Github handle <a href="https://github.com/kubkon">kubkon</a>. I'm a software engineer, and an open-source addict.</p>
+    <p>I am a paid <a href="https://ziglang.org">Zig</a> core team member, and I am currently focusing on first-class macOS support in Zig. I am the main author and contributor to the <a href="https://github.com/kubkon/zld">zld</a> traditional and the self-hosted Mach-O linkers, and I have been working hard ensuring that Zig's stage1 compiler and libstd are usable on the latest macOS Big Sur running on Apple Silicon (ARM64).</p>
     <p>Previously, I used to contribute a lot to the Wasm/WASI ecosystem but due to time constraints, I had to dial this down somewhat (if only days were longer...). However, that doesn't mean you will never see me contribute to this fanastic ecosystem ever again - stay tuned for more updates!</p>
     <p>If you like my open-source contributions, you can now <a href="https://github.com/sponsors/kubkon?o=esc">sponsor me on GitHub</a>.</p>
     <p>In this blog, I'll try to reflect on the more interesting aspects of my journey through the world of programming. If you would like to discuss any of the posts, feel free to drop me a line at
@@ -26,13 +25,13 @@ or message me on Twitter at <a href="https://twitter.com/kubkon">@kubkon</a>.</p
   <h1>My most notable contributions</h1>
   <ul class="lists">
     <li>
-      <a href="https://ziglang.org">Zig</a>, where I'm actively working on the self-hosted Mach-O linker and enhancing Zig's macOS support, but not only! I'm also contributing to the self-hosted codegen stage, most recently adding basic support for ARM64 to the Zig's self-hosted compiler. Last but not least, I've also contributed Windows NT syscalls wrappers to Zig's libstd, and curated Zig's support for WASI. BTW, in case you missed this, Zig offers now <a href="https://ziglang.org/#WebAssembly-Support-Table">tier 1</a> support for WASI!
+      <a href="https://ziglang.org">Zig</a>, where I am one of the core devs and I'm actively working on the self-hosted Mach-O linker and enhancing Zig's macOS support!
     </li>
     <li>
-      <a href="https://github.com/kubkon/zld">zld</a>, Zig's LLD drop-in replacement. This project came about as an answer to all the problems we've been having with LLD in Zig when linking MachO binaries and shared libraries. My main goal is for <em>zld</em> to alleviate those issues ensuring seamless cross-compilation to both Intel and Apple Silicon platforms in Zig; however, this is not to say it'd make me happy to see <em>zld</em> used elsewhere, in other projects as well.
+      <a href="https://github.com/kubkon/zld">zld</a>, Zig's LLD drop-in replacement. This project came about as an answer to all the problems we've been having with LLD in Zig when linking MachO binaries and shared libraries. My main goal is for <em>zld</em> to alleviate those issues ensuring seamless cross-compilation to both Intel and Apple Silicon platforms in Zig.
     </li>
     <li>
-      <a href="https://github.com/kubkon/wasmtime-zig">wasmtime-zig</a>, a Zig embedding of wasmtime, my toy project that allows you run Wasm/WASI from within your Zig code by embedding the wasmtime runtime. I've not had the time to give this one proper love it deserves, so it's pretty dated by now, but I do intend to get back to it when I get the chance (come on days, become longer!).
+      <a href="https://github.com/kubkon/wasmtime-zig">wasmtime-zig</a>, a Zig embedding of wasmtime, a toy project that allows you run Wasm/WASI from within your Zig code by embedding the wasmtime runtime.
     </li>
     <li>
       <a href="https://wasmtime.dev">wasmtime</a>, a Wasm and WASI runtime curated by the <a href="https://bytecodealliance.org">Bytecode Alliance</a> community, where I contributed and maintained the Rust implementation of the WASI spec, and also contributed a little to the fantastic <a href="https://github.com/bytecodealliance/cap-std">cap-std</a> library - a capability-based approach at Rust's libstd.
@@ -57,9 +56,5 @@ or message me on Twitter at <a href="https://twitter.com/kubkon">@kubkon</a>.</p
 
 <div class="divs">
   <h1>Huge thanks to the Zig Software Foundation and my sponsors</h1>
-  <p>Firstly, I'd like to extend my thanks to the Zig Software Foundation for making me a part-time individual contractor and reimbursing some of my spare time spent on developing the Zig language and the compiler, and curating the Zig ecosystem and the community. Thank you!</p>
-  <p>Secondly, I'd also like to take this opportunity and thank all of my individual sponsors but in particular (and in no particular order!):</p>
-  <ul class="lists">
-    <li><a href="https://www.embark-studios.com/">Embark Studios</a>, a Stockholm-based games studio, who use Rust for game-dev! How cool is that?!</li>
-  </ul>
+  <p>I'd like to extend my thanks to the Zig Software Foundation for making me a full-time individual contractor. Thank you!</p>
 </div>
