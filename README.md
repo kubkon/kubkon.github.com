@@ -2,6 +2,17 @@
 
 My first weblog. You can find it here: [jakubkonka.com](http://www.jakubkonka.com).
 
+# Building
+
+OK, this is a-me mainly manual since I seem to forget exactly how to build my own
+blog over and over again.
+
+```
+(optional) $ rm Gemfile.lock
+$ bundle install
+$ bundle exec jekyll serve
+```
+
 # License
 
 You may not reuse anything from within _posts directory without my permission.
