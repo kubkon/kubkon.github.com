@@ -5,9 +5,8 @@ title: Jakub Konka
 
 <div id="about">
   <span class="bio">
-    <p>Hi! My name is Jakub, but you might know me by my Github handle <a href="https://github.com/kubkon">kubkon</a>. I'm a compiler engineer, and an open-source addict.</p>
-    <p>I am a <a href="https://ziglang.org">Zig</a> core team member, and a paid contractor to Zig Software Foundation, where I mainly work on the compiler (backends and linkers) with occassional fixes to anything macOS-related. I am also one of the authors of the <a href="https://github.com/kubkon/emerald">emerald</a> linker which serves as a drop-in replacement for system linkers on macOS, Linux, Windows and WASM (disclaimer: it is still under development but feel free to try it out!).</p>
-    <p>Previously, I used to contribute to the Rust/Wasm/WASI ecosystem but due to time constraints, I had to dial this down somewhat (if only days were longer...). However, that doesn't mean you will never see me contribute to this fanastic ecosystem ever again - stay tuned for more updates!</p>
+    <p>Hi! My name is Jakub, but you might know me by my Github handle <a href="https://github.com/kubkon">kubkon</a>. I'm a systems programmer, and an open-source addict.</p>
+    <p>I am a <a href="https://ziglang.org">Zig</a> core team member, and a member of the <a href="https://bytecodealliance.org/">Bytecode Alliance</a>). I am mainly interested in developer tooling which includes but is not limited to compilers, linkers, build systems, and cross-compilation to name but a few.</p>
     <p>In this blog, I'll try to reflect on the more interesting aspects of my journey through the world of programming. If you would like to discuss any of the posts, feel free to drop me a line at
     
 <a href = "mailto:kubkonATjakubkonkaDOTcom" 
@@ -22,13 +21,13 @@ title: Jakub Konka
   <h1>My most notable contributions in no particular order</h1>
   <ul class="lists">
     <li>
-      <a href="https://ziglang.org">Zig</a>, where I am one of the core team members and I'm actively working on the backends and linkers for the self-hosted compiler.
-    </li>
-    <li>
-      <a href="https://github.com/kubkon/emerald">emerald</a>, a system linker drop-in replacement. This project came about as an answer to all the problems we've been having with LLD in Zig when linking MachO binaries and dynamic libraries. Since then it matured into a full-fledged system linker replacement project like the mold linker.
+      <a href="https://github.com/kubkon/bold">bold</a>, a macOS system linker drop-in replacement. This project came about as an answer to all the problems we've been having with LLD in Zig when linking MachO binaries and dynamic libraries. Since then it matured into a full-fledged system linker replacement project like the mold linker but for Apple platforms.
     </li>
     <li>
       <a href="https://github.com/kubkon/zig-yaml">zig-yaml</a>, a YAML parser library written entirely in Zig. I hear that folks are actually using it which always makes me smile and chuckle a little since the project came about when I was first writing a parser for Apple's text-based definition (.tbd) format for dynamic libraries.
+    </li>
+    <li>
+      <a href="https://ziglang.org">Zig</a>, where I am one of the core team members and contributed various things over the years including a macOS (well Mach-O) linker.
     </li>
     <li>
       <a href="https://wasmtime.dev">wasmtime</a>, a Wasm and WASI runtime curated by the <a href="https://bytecodealliance.org">Bytecode Alliance</a> community, where I contributed and maintained the Rust implementation of the WASI spec, and also contributed a little to the fantastic <a href="https://github.com/bytecodealliance/cap-std">cap-std</a> library - a capability-based approach at Rust's libstd.
@@ -53,5 +52,5 @@ title: Jakub Konka
 
 <div class="divs">
   <h1>Huge thanks to the Zig Software Foundation and my sponsors</h1>
-  <p>I'd like to extend my thanks to the Zig Software Foundation for making me a full-time individual contractor. Thank you!</p>
+  <p>I'd like to extend my thanks to the Zig Software Foundation for supporting my work. Thank you!</p>
 </div>
